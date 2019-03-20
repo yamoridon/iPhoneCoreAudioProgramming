@@ -1,0 +1,16 @@
+PODS:
+  - AudioExtension (0.1.0)
+
+DEPENDENCIES:
+  - AudioExtension (from `../`)
+
+EXTERNAL SOURCES:
+  AudioExtension:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AudioExtension: abef615d2752a4079a8c51f9a8325450169c6666
+
+PODFILE CHECKSUM: 8a81016c071d7a2ab676252817ae3ff10751766d
+
+COCOAPODS: 1.6.1
