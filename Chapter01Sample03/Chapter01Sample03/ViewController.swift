@@ -10,8 +10,10 @@ class ViewController: UIViewController {
         let fileURL = URL(fileURLWithPath: path)
         do {
             let systemSound = try SystemSoundID.create(with: fileURL)
-            systemSound.play() {
+            let string = "iPhone Core Audio!"
+            systemSound.play() { [string] in
                 print("play did end")
+                print("captured variable = \(string)")
                 do {
                     try systemSound.dispose()
                 } catch {

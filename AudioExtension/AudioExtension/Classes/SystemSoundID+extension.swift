@@ -12,22 +12,6 @@ public extension SystemSoundID {
         return systemSoundID
     }
 
-    func play() {
-        AudioServicesPlaySystemSound(self)
-    }
-
-    func addSystemSoundCompletion(
-        in runLoop: CFRunLoop? = nil,
-        mode: CFRunLoopMode = .defaultMode,
-        clientData: UnsafeMutableRawPointer? = nil,
-        completion: @escaping AudioServicesSystemSoundCompletionProc
-    ) throws {
-        let status = AudioServicesAddSystemSoundCompletion(self, runLoop, mode.rawValue, completion, clientData)
-        if status != kAudioServicesNoError {
-            throw AudioServiceError(status: status)
-        }
-    }
-
     func dispose() throws {
         let status = AudioServicesDisposeSystemSoundID(self)
         if status != kAudioServicesNoError {
@@ -35,4 +19,11 @@ public extension SystemSoundID {
         }
     }
 
+    func play(alert: Bool = false, completion: @escaping (() -> Void) = {}) {
+        if alert {
+            AudioServicesPlayAlertSoundWithCompletion(self, completion)
+        } else {
+            AudioServicesPlaySystemSoundWithCompletion(self, completion)
+        }
+    }
 }
