@@ -26,4 +26,40 @@ public extension SystemSoundID {
             AudioServicesPlaySystemSoundWithCompletion(self, completion)
         }
     }
+
+    func completePlaybackIfAppDies() throws -> Bool {
+        var specifier = self
+        let specifierSize = UInt32(MemoryLayout<SystemSoundID>.size)
+        var propertyData = UInt32(0)
+        var propertyDataSize = UInt32(MemoryLayout<UInt32>.size)
+        let status = AudioServicesGetProperty(
+            kAudioServicesPropertyCompletePlaybackIfAppDies,
+            specifierSize,
+            &specifier,
+            &propertyDataSize,
+            &propertyData
+        )
+        if status != kAudioServicesNoError {
+            throw AudioServiceError(status: status)
+        }
+        return propertyData != 0
+    }
+
+    func setCompletePlaybackIfAppDies(_ complete: Bool) throws {
+        var specifier = self
+        let specifierSize = UInt32(MemoryLayout<SystemSoundID>.size)
+        var propertyData = complete ? UInt32(1) : UInt32(0)
+        let propertyDataSize = UInt32(MemoryLayout<UInt32>.size)
+        let status = AudioServicesSetProperty(
+            kAudioServicesPropertyCompletePlaybackIfAppDies,
+            specifierSize,
+            &specifier,
+            propertyDataSize,
+            &propertyData
+        )
+        if status != kAudioServicesNoError {
+            throw AudioServiceError(status: status)
+        }
+    }
+
 }
