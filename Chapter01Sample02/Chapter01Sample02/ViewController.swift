@@ -9,7 +9,7 @@ class ViewController: UIViewController {
         }
         let fileURL = URL(fileURLWithPath: path)
         do {
-            let systemSound = try SystemSoundID.create(with: fileURL)
+            let systemSound = try SystemSoundID(url: fileURL)
             systemSound.play() {
                 print("play did end")
                 do {

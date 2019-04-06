@@ -3,13 +3,14 @@ import AudioToolbox
 
 public extension SystemSoundID {
 
-    static func create(with fileURL: URL) throws -> SystemSoundID {
+    init(url: URL) throws {
+        self.init()
         var systemSoundID = SystemSoundID(0)
-        let status = AudioServicesCreateSystemSoundID(fileURL as CFURL, &systemSoundID)
+        let status = AudioServicesCreateSystemSoundID(url as CFURL, &systemSoundID)
         if status != kAudioServicesNoError {
             throw AudioServiceError(status: status)
         }
-        return systemSoundID
+        self = systemSoundID
     }
 
     func dispose() throws {

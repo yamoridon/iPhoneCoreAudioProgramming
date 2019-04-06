@@ -13,7 +13,7 @@ class ViewController: UIViewController {
         }
         let fileURL = URL(fileURLWithPath: path)
         do {
-            systemSoundID = try SystemSoundID.create(with: fileURL)
+            systemSoundID = try SystemSoundID(url: fileURL)
         } catch {
             print(error)
         }
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
 
     func playSystemSound(_ fileURL: URL) {
         do {
-            let systemSound = try SystemSoundID.create(with: fileURL)
+            let systemSound = try SystemSoundID(url: fileURL)
             systemSound.play() {
                 do {
                     try systemSound.dispose()

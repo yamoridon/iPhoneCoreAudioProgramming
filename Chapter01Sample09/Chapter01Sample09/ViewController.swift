@@ -27,7 +27,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         do {
             let path = Bundle.main.path(forResource: "tap", ofType: "aif")!
             let fileURL = URL(fileURLWithPath: path)
-            systemSoundID = try SystemSoundID.create(with: fileURL)
+            systemSoundID = try SystemSoundID(url: fileURL)
             UIDevice.current.isProximityMonitoringEnabled = true
             NotificationCenter.default.addObserver(forName: UIDevice.proximityStateDidChangeNotification, object: nil, queue: nil) { [weak self] _ in
                 print("UIDevice.current.proximityState = \(UIDevice.current.proximityState)")

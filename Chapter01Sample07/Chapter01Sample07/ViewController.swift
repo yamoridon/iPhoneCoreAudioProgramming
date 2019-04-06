@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         do {
             let path = Bundle.main.path(forResource: "tap", ofType: ".aif")!
             let fileURL = URL(fileURLWithPath: path)
-            let systemSoundID = try SystemSoundID.create(with: fileURL)
+            let systemSoundID = try SystemSoundID(url: fileURL)
             let complete = try systemSoundID.completePlaybackIfAppDies()
             print("complete playback if app dies: \(complete)")
             try systemSoundID.dispose()

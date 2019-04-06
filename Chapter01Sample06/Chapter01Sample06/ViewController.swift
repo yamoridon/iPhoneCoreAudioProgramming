@@ -13,7 +13,7 @@ class ViewController: UIViewController {
         if let path = Bundle.main.path(forResource: "tap", ofType: "aif") {
             let fileURL = URL(fileURLWithPath: path)
             do {
-                systemSoundID = try SystemSoundID.create(with: fileURL)
+                systemSoundID = try SystemSoundID(url: fileURL)
             } catch {
                 print(error)
             }
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         if let path = Bundle.main.path(forResource: "completion", ofType: "aif") {
             let fileURL = URL(fileURLWithPath: path)
             do {
-                completionSoundID = try SystemSoundID.create(with: fileURL)
+                completionSoundID = try SystemSoundID(url: fileURL)
             } catch {
                 print(error)
             }

@@ -22,7 +22,7 @@ class ViewController: UIViewController {
 
     func playSystemSound(_ fileURL: URL) {
         do {
-            let systemSound = try SystemSoundID.create(with: fileURL)
+            let systemSound = try SystemSoundID(url: fileURL)
             systemSound.play() {
                 do {
                     try systemSound.dispose()
