@@ -20,7 +20,7 @@ public extension SystemSoundID {
         }
     }
 
-    func play(alert: Bool = false, completion: @escaping (() -> Void) = {}) {
+    func play(alert: Bool = false, completion: @escaping () -> Void = {}) {
         if alert {
             AudioServicesPlayAlertSoundWithCompletion(self, completion)
         } else {
